@@ -33,7 +33,7 @@ if (!isset($pageTitle)) $pageTitle = "Projecto África";
 
       <button class="burger" id="burger" aria-label="Abrir menu">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(17,24,39,.9)" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
     </div>

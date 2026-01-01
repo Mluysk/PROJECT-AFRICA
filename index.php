@@ -205,7 +205,7 @@ require __DIR__ . "/header.php";
 
             <div class="row">
               <div>
-                <label for="amount">Valor <small>(valor mínimo R$1.00 — digite qualquer valor)</small></label>
+                <label for="amount">Valor <small class="amount-hint">(valor mínimo R$1.00 — digite qualquer valor)</small></label>
                 <input id="amount" type="number" min="1" step="1" required />
               </div>
               <div>
@@ -233,7 +233,7 @@ require __DIR__ . "/header.php";
             <img id="pixQr" alt="QR Code PIX" />
             <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
 
-            <p class="pix-wait" id="pixWait">Espere 30 segundos para confirmar o PIX que caiu ou aguarde a confirmação automática.</p>
+            <p class="pix-wait" id="pixWait">Espere 30 segundos para confirmar o pagamento PIX ou aguarde a confirmação automática.</p>
             <p class="pix-thanks" id="pixThanks">Obrigado por ajudar a África.</p>
             <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
           </div>
@@ -283,7 +283,7 @@ require __DIR__ . "/header.php";
             <img id="pixQr" alt="QR Code PIX" />
             <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
 
-            <p class="pix-wait" id="pixWait">Espere 30 segundos para confirmar o PIX que caiu ou aguarde a confirmação automática.</p>
+            <p class="pix-wait" id="pixWait">Espere 30 segundos para confirmar o pagamento PIX ou aguarde a confirmação automática.</p>
             <p class="pix-thanks" id="pixThanks">Obrigado por ajudar a África.</p>
             <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
           </div>

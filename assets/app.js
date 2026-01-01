@@ -172,10 +172,11 @@ function openPixPanel(payload){
   pixPanel?.classList.add("show");
   pixPanel?.setAttribute("aria-hidden", "false");
   pixThanks?.classList.remove("show");
+  startPixCountdown();
 }
 function closePixPanel(){
   pendingDonation = null;
-  if(pixTimer) clearTimeout(pixTimer);
+  if(pixTimer) clearInterval(pixTimer);
   if(autoConfirmTimer) clearTimeout(autoConfirmTimer);
   pixPanel?.classList.remove("show");
   pixPanel?.setAttribute("aria-hidden", "true");
@@ -223,6 +224,40 @@ let pendingDonation = null;
 let pixTimer = null;
 let autoConfirmTimer = null;
 let isConfirmingPix = false;
+
+function startPixCountdown(){
+  const totalSeconds = 30;
+  let remaining = totalSeconds;
+
+  if(pixTimer) clearInterval(pixTimer);
+  if(autoConfirmTimer) clearTimeout(autoConfirmTimer);
+
+  pixConfirm?.setAttribute("disabled", "disabled");
+
+  const updateWaitText = () => {
+    if(!pixWait) return;
+    if(remaining > 0){
+      pixWait.textContent = `Espere ${remaining} segundos para confirmar o pagamento PIX ou aguarde a confirmação automática.`;
+    }else{
+      pixWait.textContent = "tempo de espera concluido pode confirmar o pagamento manualmente.";
+    }
+  };
+
+  updateWaitText();
+  pixTimer = setInterval(() => {
+    remaining -= 1;
+    if(remaining <= 0){
+      clearInterval(pixTimer);
+      pixTimer = null;
+      pixConfirm?.removeAttribute("disabled");
+    }
+    updateWaitText();
+  }, 1000);
+
+  autoConfirmTimer = setTimeout(() => {
+    confirmPixPayment();
+  }, totalSeconds * 1000);
+}
 
 async function donationStats(){
   const cur = currencyEl.value;

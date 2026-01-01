@@ -384,6 +384,11 @@ footer{padding:28px 0 40px; border-top:1px solid var(--line); color:var(--muted2
 .foot b{color:rgba(255,255,255,.82)}
 .footer-brand{display:flex; align-items:flex-start; gap:14px}
 .footer-logo{width:83px; height:auto; filter:brightness(0) invert(1)}
+.footer-social{margin-left:auto}
+.social-links{display:flex; gap:16px; align-items:center; margin-top:6px}
+.social-link{display:inline-flex; width:36px; height:36px; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.2); border-radius:50%; color:#fff; text-decoration:none; transition:transform .2s ease, border-color .2s ease, color .2s ease}
+.social-link svg{width:18px; height:18px; fill:currentColor}
+.social-link:hover{transform:translateY(-2px); border-color:rgba(255,255,255,.45); color:#f7f7f7}
 .foot-note{margin-top:16px; font-size:12px; color:var(--muted2); line-height:1.6; text-align:center}
 .foot-note-line{display:block; margin-top:6px}
 .foot-note a{color:#e5e7eb; text-decoration:none}

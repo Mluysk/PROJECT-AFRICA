@@ -295,9 +295,9 @@ require __DIR__ . "/header.php";
         <div class="ph">
           <h3>Mensagens</h3>
           <div class="comment-nav" aria-label="Navegação de mensagens">
-            <button type="button" id="commentPrev" class="comment-nav-btn" aria-label="Mensagens anteriores">◀</button>
+            <button type="button" id="commentPrev" class="comment-nav-btn" aria-label="Mensagens anteriores">▶</button>
             <span id="commentPageInfo" class="comment-page" aria-hidden="true"></span>
-            <button type="button" id="commentNext" class="comment-nav-btn" aria-label="Mensagens mais recentes">▶</button>
+            <button type="button" id="commentNext" class="comment-nav-btn" aria-label="Mensagens mais recentes">◀</button>
           </div>
           <span id="commentNavLabel" class="comment-nav-label">ver mensagens anterior</span>
           <span class="pill"><span class="dot"></span> Atualiza</span>

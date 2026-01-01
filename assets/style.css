@@ -379,7 +379,7 @@ input:focus,select:focus,textarea:focus{
 
 /* Footer */
 footer{padding:28px 0 40px; border-top:1px solid var(--line); color:var(--muted2)}
-.foot{display:flex; justify-content:center; gap:24px; flex-wrap:wrap; align-items:center; text-align:center}
+.foot{display:flex; justify-content:center; column-gap:99px; row-gap:24px; flex-wrap:wrap; align-items:center; text-align:center}
 .foot .col{max-width:520px}
 .foot b{color:rgba(255,255,255,.82)}
 .footer-brand{display:flex; flex-direction:row; align-items:center; gap:14px; text-align:left}

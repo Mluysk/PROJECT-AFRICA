@@ -205,7 +205,7 @@ require __DIR__ . "/header.php";
 
             <div class="row">
               <div>
-                <label for="amount">Valor</label>
+                <label for="amount">Valor <small>(valor mínimo R$1.00 — digite qualquer valor)</small></label>
                 <input id="amount" type="number" min="1" step="1" required />
               </div>
               <div>

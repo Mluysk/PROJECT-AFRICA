@@ -248,7 +248,6 @@ const pixAmountEl = $("#pixAmount");
 const pixConfirm = $("#pixConfirm");
 const pixThanks = $("#pixThanks");
 const pixWait = $("#pixWait");
-const footerYearEl = $("#footerYear");
 let pendingDonation = null;
 let pixTimer = null;
 let autoConfirmTimer = null;
@@ -257,10 +256,6 @@ let isConfirmingPix = false;
 function updateAmountPrefix(){
   if(!amountPrefixEl || !currencyEl) return;
   amountPrefixEl.textContent = currencySymbol(currencyEl.value);
-}
-function updateFooterYear(){
-  if(!footerYearEl) return;
-  footerYearEl.textContent = String(new Date().getFullYear());
 }
 
 function startPixCountdown(){
@@ -321,7 +316,6 @@ amountEl?.addEventListener("blur", () => {
   if(formatted) amountEl.value = formatted;
 });
 updateAmountPrefix();
-updateFooterYear();
 
 donationForm?.addEventListener("submit", async (e) => {
   e.preventDefault();

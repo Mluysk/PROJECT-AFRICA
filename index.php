@@ -197,6 +197,8 @@ require __DIR__ . "/header.php";
 
             <div class="row">
               <div>
+                <label for="amount">Valor <small class="amount-hint">(valores sugeridos • ou digite um valor manualmente abaixo)</small></label>
+                <input id="amount" type="number" min="1" step="1" required />
                 <div class="quick">
                   <button class="q" data-amount="1">1</button>
                   <button class="q" data-amount="5">5</button>
@@ -205,8 +207,6 @@ require __DIR__ . "/header.php";
                   <button class="q" data-amount="50">50</button>
                   <button class="q" data-amount="100">100</button>
                 </div>
-                <label for="amount">Valor <small class="amount-hint">(valores sugeridos • ou digite um valor manualmente abaixo)</small></label>
-                <input id="amount" type="number" min="1" step="1" required />
               </div>
               <div>
                 <label for="purpose">Destino</label>

@@ -118,6 +118,14 @@ tabs.forEach(t => t.addEventListener("click", () => {
 function startAuto(){ stopAuto(); autoTimer = setInterval(()=> go(1), 3800); }
 function stopAuto(){ if(autoTimer) clearInterval(autoTimer); autoTimer = null; }
 $(".carousel")?.addEventListener("mouseenter", stopAuto);
+
+function updateFooterYear(){
+  const yearEl = document.getElementById("footerYear");
+  if(yearEl){
+    yearEl.textContent = String(new Date().getFullYear());
+  }
+}
+updateFooterYear();
 $(".carousel")?.addEventListener("mouseleave", startAuto);
 startAuto();
 rebuildVisibility();

@@ -55,8 +55,8 @@ button,input,select,textarea{font:inherit}
 }
 .brand h1 span{display:inline-block}
 .brand h1 .title-projecto{color:#1f2937; letter-spacing:.18em}
-.brand h1 .title-africa{display:block; margin-left:0; letter-spacing:0}
-.brand h1 .title-africa span{letter-spacing:0}
+.brand h1 .title-africa{display:block; margin-left:0; letter-spacing:-.02em}
+.brand h1 .title-africa span{letter-spacing:-.02em}
 .brand h1 .title-africa-accent{color:#e53935}
 .brand h1 .title-africa-mid{color:#f59e0b}
 .brand h1 .title-africa-rest{color:#2faa3d}

@@ -11,6 +11,27 @@ function formatMoney(value, currency){
     return sym + " " + Number(value||0).toFixed(2);
   }
 }
+function parseAmount(value){
+  const raw = String(value ?? "").trim();
+  if(!raw) return 0;
+  const cleaned = raw.replace(/[^\d,.-]/g, "");
+  const hasComma = cleaned.includes(",");
+  let normalized = cleaned;
+  if(hasComma){
+    normalized = normalized.replace(/\./g, "").replace(",", ".");
+  }else{
+    normalized = normalized.replace(/,/g, "");
+  }
+  const num = Number(normalized);
+  return Number.isFinite(num) ? num : 0;
+}
+function formatInputAmount(value){
+  const raw = String(value ?? "").trim();
+  if(!raw) return "";
+  const num = parseAmount(raw);
+  if(!num) return "0,00";
+  return num.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 // Mobile
@@ -272,14 +293,20 @@ async function donationStats(){
   avgDonationEl.textContent = formatMoney(avg, cur);
 }
 currencyEl?.addEventListener("change", donationStats);
-$$(".q").forEach(btn => btn.addEventListener("click", () => { amountEl.value = btn.dataset.amount; }));
+$$(".q").forEach(btn => btn.addEventListener("click", () => {
+  amountEl.value = formatInputAmount(btn.dataset.amount);
+}));
+amountEl?.addEventListener("blur", () => {
+  const formatted = formatInputAmount(amountEl.value);
+  if(formatted) amountEl.value = formatted;
+});
 
 donationForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
   const payload = {
     name: ($("#donorName").value || "").trim(),
     currency: currencyEl.value,
-    amount: Number(amountEl.value || 0),
+    amount: parseAmount(amountEl.value),
     purpose: ($("#purpose").value || "").trim(),
     note: ($("#note").value || "").trim()
   };

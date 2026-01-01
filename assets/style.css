@@ -300,6 +300,24 @@ input,select,textarea{
   color:rgba(255,255,255,.92);
   outline:none;
 }
+.amount-field{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.amount-field input{flex:1}
+.amount-prefix{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.20);
+  color:rgba(255,255,255,.92);
+  font-weight:600;
+  letter-spacing:.02em;
+}
 textarea{min-height:110px; resize:vertical}
 input:focus,select:focus,textarea:focus{
   border-color: rgba(255,255,255,.18);

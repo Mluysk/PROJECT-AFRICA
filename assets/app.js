@@ -353,6 +353,7 @@ const commentList = $("#commentList");
 const commentPrev = $("#commentPrev");
 const commentNext = $("#commentNext");
 const commentPageInfo = $("#commentPageInfo");
+const commentNavLabel = $("#commentNavLabel");
 let commentPage = 0;
 let commentTotalPages = 0;
 let commentCache = [];
@@ -393,6 +394,9 @@ function renderComments(arr){
   if(commentPageInfo) commentPageInfo.textContent = `${commentPage + 1}/${commentTotalPages}`;
   if(commentPrev) commentPrev.disabled = commentPage >= commentTotalPages - 1;
   if(commentNext) commentNext.disabled = commentPage <= 0;
+  if(commentNavLabel){
+    commentNavLabel.textContent = commentPage === 0 ? "ver mensagens anterior" : "ver mensagens atuais";
+  }
 }
 async function loadAndRenderComments(){
   const arr = await apiGet("comments");

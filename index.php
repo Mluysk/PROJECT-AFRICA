@@ -299,6 +299,7 @@ require __DIR__ . "/header.php";
             <span id="commentPageInfo" class="comment-page" aria-hidden="true"></span>
             <button type="button" id="commentNext" class="comment-nav-btn" aria-label="Mensagens mais recentes">▶</button>
           </div>
+          <span id="commentNavLabel" class="comment-nav-label">ver mensagens anterior</span>
           <span class="pill"><span class="dot"></span> Atualiza</span>
         </div>
         <div class="pc">

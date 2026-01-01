@@ -292,10 +292,12 @@ section{padding:34px 0}
 .metric b{font-size:18px}
 .metric span{display:block; margin-top:4px; color:var(--muted2); font-size:12px; line-height:1.35}
 .form{display:grid; gap:10px}
-.comment-nav{display:flex; align-items:center; gap:8px}
-.comment-nav-btn{width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:rgba(255,255,255,.06); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer}
+.comment-nav{display:flex; align-items:center; gap:10px}
+.comment-nav-btn{width:22px; height:22px; border-radius:6px; border:1px solid transparent; background:transparent; color:rgba(255,255,255,.7); display:inline-flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer; transition:color .2s ease, border-color .2s ease}
+.comment-nav-btn:hover{color:#fff; border-color:rgba(255,255,255,.25)}
 .comment-nav-btn:disabled{opacity:.35; cursor:not-allowed}
-.comment-page{font-size:12px; color:var(--muted2); min-width:40px; text-align:center}
+.comment-page{font-size:11px; color:var(--muted2); min-width:32px; text-align:center}
+.comment-nav-label{font-size:11px; color:var(--muted2); text-transform:lowercase}
 .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
 label{display:block; font-size:12px; color:rgba(255,255,255,.75); margin-bottom:6px; letter-spacing:.04em}
 .amount-hint{display:block; font-size:11px; color:var(--muted2); font-weight:500; letter-spacing:0; margin-top:4px}

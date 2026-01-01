@@ -7,7 +7,8 @@
           <div>
             <b>Projecto África</b>
             <div style="margin-top:10px; line-height:1.6">
-              Transparência, ação local e respeito.<br/>
+              Onde a ajuda chega de verdade,<br/>
+              e o cuidado faz a diferença.<br/>
               Contato: <span style="color:rgba(255,255,255,.82)">contato@projectoafrica.org</span>
             </div>
           </div>

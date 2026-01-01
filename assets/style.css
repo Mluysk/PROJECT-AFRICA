@@ -295,8 +295,9 @@ section{padding:34px 0}
 .metric span{display:block; margin-top:4px; color:var(--muted2); font-size:12px; line-height:1.35}
 .form{display:grid; gap:10px}
 .comment-nav{display:flex; align-items:center; gap:10px}
-.comment-nav-btn{width:auto; height:auto; border-radius:0; border:none; background:transparent; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer; padding:0; transition:opacity .2s ease}
-.comment-nav-btn:hover{opacity:.8}
+.comment-nav-btn{width:34px; height:34px; border-radius:12px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); color:#fff; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; padding:0; transition:opacity .2s ease, border-color .2s ease, background .2s ease}
+.comment-nav-btn svg{width:14px; height:14px; stroke:#fff; stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round}
+.comment-nav-btn:hover{opacity:.9; border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.08)}
 .comment-nav-btn:disabled{opacity:.35; cursor:not-allowed}
 .comment-page{font-size:11px; color:var(--muted2); min-width:32px; text-align:center}
 .comment-nav-label{font-size:11px; color:var(--muted2); text-transform:lowercase}

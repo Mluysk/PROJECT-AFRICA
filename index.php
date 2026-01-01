@@ -196,7 +196,7 @@ require __DIR__ . "/header.php";
               <div>
                 <label for="amount">Valor <small class="amount-hint">(valor minimo R$1,00 • doe qualquer valor)</small></label>
                 <div class="amount-field">
-                  <span class="amount-prefix">R$</span>
+                  <span class="amount-prefix" id="amountPrefix">R$</span>
                   <input id="amount" type="text" inputmode="decimal" value="1,00" required />
                 </div>
                 <div class="helper">(valores sugeridos • ou digite um valor manualmente acima)</div>

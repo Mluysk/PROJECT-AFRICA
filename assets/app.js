@@ -34,6 +34,12 @@ function formatInputAmount(value){
 }
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
+function currencySymbol(code){
+  if(code === "USD") return "$";
+  if(code === "EUR") return "€";
+  return "R$";
+}
+
 // Mobile
 // Smooth scroll
 $$('a[href^="#"]').forEach(a => {
@@ -233,6 +239,7 @@ const donationCountEl = $("#donationCount");
 const donationTotalEl = $("#donationTotal");
 const avgDonationEl = $("#avgDonation");
 const amountEl = $("#amount");
+const amountPrefixEl = $("#amountPrefix");
 const currencyEl = $("#currency");
 const successBox = $("#successBox");
 const pixPanel = $("#pixPanel");
@@ -245,6 +252,11 @@ let pendingDonation = null;
 let pixTimer = null;
 let autoConfirmTimer = null;
 let isConfirmingPix = false;
+
+function updateAmountPrefix(){
+  if(!amountPrefixEl || !currencyEl) return;
+  amountPrefixEl.textContent = currencySymbol(currencyEl.value);
+}
 
 function startPixCountdown(){
   const totalSeconds = 30;
@@ -292,7 +304,10 @@ async function donationStats(){
   donationTotalEl.textContent = formatMoney(total, cur);
   avgDonationEl.textContent = formatMoney(avg, cur);
 }
-currencyEl?.addEventListener("change", donationStats);
+currencyEl?.addEventListener("change", () => {
+  updateAmountPrefix();
+  donationStats();
+});
 $$(".q").forEach(btn => btn.addEventListener("click", () => {
   amountEl.value = formatInputAmount(btn.dataset.amount);
 }));
@@ -300,6 +315,7 @@ amountEl?.addEventListener("blur", () => {
   const formatted = formatInputAmount(amountEl.value);
   if(formatted) amountEl.value = formatted;
 });
+updateAmountPrefix();
 
 donationForm?.addEventListener("submit", async (e) => {
   e.preventDefault();

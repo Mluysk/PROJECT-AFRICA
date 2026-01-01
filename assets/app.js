@@ -122,17 +122,18 @@ function buildDonationQrUrl(amount, currency){
 }
 
 
-function openPixModal(payload){
+function openPixPanel(payload){
   pendingDonation = payload;
   if(pixQr) pixQr.src = buildDonationQrUrl(payload.amount, payload.currency);
   if(pixAmountEl) pixAmountEl.textContent = formatMoney(payload.amount, payload.currency);
-  pixModal?.classList.add("show");
-  pixModal?.setAttribute("aria-hidden", "false");
+  pixPanel?.classList.add("show");
+  pixPanel?.setAttribute("aria-hidden", "false");
+  pixThanks?.classList.remove("show");
 }
-function closePixModal(){
+function closePixPanel(){
   pendingDonation = null;
-  pixModal?.classList.remove("show");
-  pixModal?.setAttribute("aria-hidden", "true");
+  pixPanel?.classList.remove("show");
+  pixPanel?.setAttribute("aria-hidden", "true");
 }
 
 // ===== Donations =====
@@ -143,10 +144,11 @@ const avgDonationEl = $("#avgDonation");
 const amountEl = $("#amount");
 const currencyEl = $("#currency");
 const successBox = $("#successBox");
-const pixModal = $("#pixModal");
+const pixPanel = $("#pixPanel");
 const pixQr = $("#pixQr");
 const pixAmountEl = $("#pixAmount");
 const pixConfirm = $("#pixConfirm");
+const pixThanks = $("#pixThanks");
 let pendingDonation = null;
 
 async function donationStats(){
@@ -176,7 +178,7 @@ donationForm?.addEventListener("submit", async (e) => {
   if(!payload.name || !payload.amount || payload.amount < 1) return;
 
   try{
-    openPixModal(payload);
+    openPixPanel(payload);
   }catch(err){
     alert("Falha ao registrar doação: " + err.message);
   }
@@ -193,7 +195,10 @@ pixConfirm?.addEventListener("click", async () => {
     donationForm.reset();
     currencyEl.value = payload.currency;
     await donationStats();
-    closePixModal();
+    pixThanks?.classList.add("show");
+    setTimeout(() => {
+      closePixPanel();
+    }, 1500);
   }catch(err){
     alert("Falha ao registrar doação: " + err.message);
   }finally{

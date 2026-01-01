@@ -228,14 +228,12 @@ require __DIR__ . "/header.php";
           </form>
 
 
-          <div class="modal" id="pixModal" aria-hidden="true">
-            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pixTitle">
-              <h4 id="pixTitle">Pagamento via PIX</h4>
-              <img id="pixQr" alt="QR Code PIX" />
-              <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
-              <p class="pix-thanks">Obrigado por ajudar a África.</p>
-              <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
-            </div>
+          <div class="pix-panel" id="pixPanel" aria-hidden="true">
+            <h4>Pagamento via PIX</h4>
+            <img id="pixQr" alt="QR Code PIX" />
+            <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
+            <p class="pix-thanks" id="pixThanks">Obrigado por ajudar a África.</p>
+            <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
           </div>
         </div>
       </div>
@@ -278,14 +276,12 @@ require __DIR__ . "/header.php";
           </form>
 
 
-          <div class="modal" id="pixModal" aria-hidden="true">
-            <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pixTitle">
-              <h4 id="pixTitle">Pagamento via PIX</h4>
-              <img id="pixQr" alt="QR Code PIX" />
-              <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
-              <p class="pix-thanks">Obrigado por ajudar a África.</p>
-              <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
-            </div>
+          <div class="pix-panel" id="pixPanel" aria-hidden="true">
+            <h4>Pagamento via PIX</h4>
+            <img id="pixQr" alt="QR Code PIX" />
+            <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
+            <p class="pix-thanks" id="pixThanks">Obrigado por ajudar a África.</p>
+            <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
           </div>
         </div>
       </div>

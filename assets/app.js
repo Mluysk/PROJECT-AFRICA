@@ -14,13 +14,6 @@ function formatMoney(value, currency){
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 // Mobile
-const burger = $("#burger");
-const mobileNav = $("#mobileNav");
-burger?.addEventListener("click", () => {
-  const open = mobileNav.style.display === "block";
-  mobileNav.style.display = open ? "none" : "block";
-});
-
 // Smooth scroll
 $$('a[href^="#"]').forEach(a => {
   a.addEventListener("click", (e) => {
@@ -29,7 +22,6 @@ $$('a[href^="#"]').forEach(a => {
     if(!el) return;
     e.preventDefault();
     el.scrollIntoView({ behavior:"smooth", block:"start" });
-    if(mobileNav && mobileNav.style.display === "block") mobileNav.style.display = "none";
   });
 });
 

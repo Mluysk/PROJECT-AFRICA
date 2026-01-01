@@ -405,14 +405,14 @@ async function loadAndRenderComments(){
 }
 
 commentPrev?.addEventListener("click", () => {
-  if(commentPage < commentTotalPages - 1){
-    commentPage += 1;
+  if(commentPage > 0){
+    commentPage -= 1;
     renderComments(commentCache);
   }
 });
 commentNext?.addEventListener("click", () => {
-  if(commentPage > 0){
-    commentPage -= 1;
+  if(commentPage < commentTotalPages - 1){
+    commentPage += 1;
     renderComments(commentCache);
   }
 });

@@ -17,7 +17,9 @@
         <div class="social-links" aria-label="Redes sociais">
           <a class="social-link" href="#" aria-label="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm10 2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm-5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm6-2.8a1.3 1.3 0 1 1-2.6 0 1.3 1.3 0 0 1 2.6 0z"/>
+              <path d="M16 3H8a5 5 0 0 0-5 5v8a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V8a5 5 0 0 0-5-5zm3 13a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v8z"/>
+              <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/>
+              <circle cx="17" cy="7" r="1.2"/>
             </svg>
           </a>
           <a class="social-link" href="#" aria-label="Facebook">
@@ -32,7 +34,7 @@
           </a>
           <a class="social-link" href="#" aria-label="TikTok">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14 3c.4 2.2 2 3.9 4 4.2V11c-1.7 0-3.3-.5-4.7-1.4V16a5 5 0 1 1-4.3-5V7.4a8.8 8.8 0 0 0-2.7-.4v4.1A5 5 0 1 0 12 16V3h2z"/>
+              <path d="M14.5 3c.5 2.4 2.1 4.1 4.5 4.4V10c-1.8 0-3.4-.6-4.8-1.6v5.6a5.1 5.1 0 1 1-4.4-5v2.6a2.6 2.6 0 1 0 2.2 2.6V3h2.5z"/>
             </svg>
           </a>
         </div>

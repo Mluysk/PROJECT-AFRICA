@@ -4,11 +4,10 @@
       <div class="col">
         <div class="footer-brand">
           <img class="footer-logo" src="/logo.png" alt="Projecto África" />
-          <div>
-            <b>Projecto África</b>
+            <div>
+              <b>Projecto África</b>
             <div style="margin-top:10px; line-height:1.6">
-              Onde a ajuda chega de verdade,<br/>
-              e o cuidado faz a diferença.<br/>
+              <span class="footer-tagline">Onde a ajuda chega de verdade,<br/>e o cuidado faz a diferença.</span><br/>
               Contato: <span style="color:rgba(255,255,255,.82)">contato@projectoafrica.org</span>
             </div>
           </div>

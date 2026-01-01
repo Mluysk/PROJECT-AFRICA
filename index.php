@@ -23,9 +23,6 @@ require __DIR__ . "/header.php";
             <a class="btn" href="#historias">Ver histórias</a>
           </div>
           <div class="mini">
-            <span>✓ Contadores ao vivo</span>
-            <span>✓ Doações salvas no servidor</span>
-            <span>✓ Comentários salvos no servidor</span>
           </div>
         </div>
       </div>

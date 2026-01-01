@@ -47,7 +47,7 @@ button,input,select,textarea{font:inherit}
   display:block;
 }
 .brand h1{
-  font-size:14px; margin:0;
+  font-size:18px; margin:0;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:#111827;
@@ -55,7 +55,7 @@ button,input,select,textarea{font:inherit}
 }
 .brand small{
   display:block; margin-top:4px;
-  font-size:12px; color:#6b7280;
+  font-size:14.5px; color:#6b7280;
   letter-spacing:.02em;
 }
 .nav{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}

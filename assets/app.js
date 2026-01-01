@@ -350,6 +350,12 @@ pixConfirm?.addEventListener("click", () => {
 // ===== Comments =====
 const commentForm = $("#commentForm");
 const commentList = $("#commentList");
+const commentPrev = $("#commentPrev");
+const commentNext = $("#commentNext");
+const commentPageInfo = $("#commentPageInfo");
+let commentPage = 0;
+let commentTotalPages = 0;
+let commentCache = [];
 
 function escapeHtml(s){
   return String(s)
@@ -360,12 +366,19 @@ function escapeHtml(s){
     .replaceAll("'","&#039;");
 }
 function renderComments(arr){
-  const items = arr.slice().reverse();
-  if(!items.length){
+  commentCache = arr.slice().reverse();
+  commentTotalPages = Math.max(1, Math.ceil(commentCache.length / 3));
+  commentPage = clamp(commentPage, 0, commentTotalPages - 1);
+  if(!commentCache.length){
     commentList.innerHTML = `<div class="helper">Sem comentários ainda. Seja o primeiro.</div>`;
+    if(commentPageInfo) commentPageInfo.textContent = "";
+    commentPrev && (commentPrev.disabled = true);
+    commentNext && (commentNext.disabled = true);
     return;
   }
-  commentList.innerHTML = items.map(c => {
+  const start = commentPage * 3;
+  const pageItems = commentCache.slice(start, start + 3);
+  commentList.innerHTML = pageItems.map(c => {
     const date = new Date(c.at);
     const when = isNaN(date) ? "" : date.toLocaleString("pt-BR");
     const city = c.city ? ` • ${escapeHtml(c.city)}` : "";
@@ -377,11 +390,28 @@ function renderComments(arr){
       </div>
     `;
   }).join("");
+  if(commentPageInfo) commentPageInfo.textContent = `${commentPage + 1}/${commentTotalPages}`;
+  if(commentPrev) commentPrev.disabled = commentPage >= commentTotalPages - 1;
+  if(commentNext) commentNext.disabled = commentPage <= 0;
 }
 async function loadAndRenderComments(){
   const arr = await apiGet("comments");
+  commentPage = 0;
   renderComments(arr);
 }
+
+commentPrev?.addEventListener("click", () => {
+  if(commentPage < commentTotalPages - 1){
+    commentPage += 1;
+    renderComments(commentCache);
+  }
+});
+commentNext?.addEventListener("click", () => {
+  if(commentPage > 0){
+    commentPage -= 1;
+    renderComments(commentCache);
+  }
+});
 
 commentForm?.addEventListener("submit", async (e) => {
   e.preventDefault();

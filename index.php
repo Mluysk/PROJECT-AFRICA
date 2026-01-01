@@ -292,7 +292,15 @@ require __DIR__ . "/header.php";
       </div>
 
       <div class="panel">
-        <div class="ph"><h3>Mensagens</h3><span class="pill"><span class="dot"></span> Atualiza</span></div>
+        <div class="ph">
+          <h3>Mensagens</h3>
+          <div class="comment-nav" aria-label="Navegação de mensagens">
+            <button type="button" id="commentPrev" class="comment-nav-btn" aria-label="Mensagens anteriores">◀</button>
+            <span id="commentPageInfo" class="comment-page" aria-hidden="true"></span>
+            <button type="button" id="commentNext" class="comment-nav-btn" aria-label="Mensagens mais recentes">▶</button>
+          </div>
+          <span class="pill"><span class="dot"></span> Atualiza</span>
+        </div>
         <div class="pc">
           <div id="commentList" style="display:grid; gap:10px;"></div>
         </div>

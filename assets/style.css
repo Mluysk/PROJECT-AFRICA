@@ -36,7 +36,7 @@ button,input,select,textarea{font:inherit}
   border-bottom:1px solid #e5e7eb;
 }
 .topbar-inner{
-  height:96px;
+  height:102px;
   display:flex; align-items:center; justify-content:space-between;
   gap:14px;
 }

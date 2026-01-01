@@ -42,7 +42,7 @@ button,input,select,textarea{font:inherit}
 }
 .brand{display:flex; align-items:center; gap:12px; min-width:220px}
 .logo{
-  width:70px; height:70px;
+  width:84px; height:84px;
   object-fit:contain;
   display:block;
 }

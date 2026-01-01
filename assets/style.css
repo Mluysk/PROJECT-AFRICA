@@ -53,6 +53,11 @@ button,input,select,textarea{font:inherit}
   color:#111827;
   line-height:1.2;
 }
+.brand h1 span{display:inline-block}
+.brand h1 .title-projecto{color:#1f2937}
+.brand h1 .title-africa{margin-left:6px}
+.brand h1 .title-africa-accent{color:#e24b2d}
+.brand h1 .title-africa-rest{color:#22c55e}
 .brand small{
   display:block; margin-top:4px;
   font-size:14.5px; color:#6b7280;

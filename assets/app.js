@@ -114,9 +114,49 @@ async function apiPost(type, payload){
 }
 
 
-function buildDonationQrUrl(amount, currency){
+function formatPixField(id, value){
+  const len = String(value).length.toString().padStart(2, "0");
+  return `${id}${len}${value}`;
+}
+function crc16(payload){
+  let crc = 0xffff;
+  for (let i = 0; i < payload.length; i++) {
+    crc ^= payload.charCodeAt(i) << 8;
+    for (let j = 0; j < 8; j++) {
+      if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+      else crc <<= 1;
+      crc &= 0xffff;
+    }
+  }
+  return crc.toString(16).toUpperCase().padStart(4, "0");
+}
+function buildPixPayload(amount){
   const key = "doacao@projectafrica.org";
-  const data = `PIX|key:${key}|amount:${amount}|currency:${currency}`;
+  const merchantName = "PROJECTO AFRICA";
+  const merchantCity = "LUANDA";
+  const amountStr = Number(amount).toFixed(2);
+
+  const merchantAccount =
+    formatPixField("00", "BR.GOV.BCB.PIX") +
+    formatPixField("01", key);
+
+  const payload =
+    formatPixField("00", "01") +
+    formatPixField("26", merchantAccount) +
+    formatPixField("52", "0000") +
+    formatPixField("53", "986") +
+    formatPixField("54", amountStr) +
+    formatPixField("58", "BR") +
+    formatPixField("59", merchantName) +
+    formatPixField("60", merchantCity) +
+    formatPixField("62", formatPixField("05", "PROJECTOAFRICA"));
+
+  const withCrc = payload + "6304";
+  const crc = crc16(withCrc);
+  return withCrc + crc;
+}
+function buildDonationQrUrl(amount){
+  const data = buildPixPayload(amount);
   const encoded = encodeURIComponent(data);
   return `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encoded}`;
 }
@@ -124,7 +164,7 @@ function buildDonationQrUrl(amount, currency){
 
 function openPixPanel(payload){
   pendingDonation = payload;
-  if(pixQr) pixQr.src = buildDonationQrUrl(payload.amount, payload.currency);
+  if(pixQr) pixQr.src = buildDonationQrUrl(payload.amount);
   if(pixAmountEl) pixAmountEl.textContent = formatMoney(payload.amount, payload.currency);
   pixPanel?.classList.add("show");
   pixPanel?.setAttribute("aria-hidden", "false");

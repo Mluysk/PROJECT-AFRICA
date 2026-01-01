@@ -14,13 +14,6 @@ function formatMoney(value, currency){
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 // Mobile
-const burger = $("#burger");
-const mobileNav = $("#mobileNav");
-burger?.addEventListener("click", () => {
-  const open = mobileNav.style.display === "block";
-  mobileNav.style.display = open ? "none" : "block";
-});
-
 // Smooth scroll
 $$('a[href^="#"]').forEach(a => {
   a.addEventListener("click", (e) => {
@@ -29,7 +22,6 @@ $$('a[href^="#"]').forEach(a => {
     if(!el) return;
     e.preventDefault();
     el.scrollIntoView({ behavior:"smooth", block:"start" });
-    if(mobileNav && mobileNav.style.display === "block") mobileNav.style.display = "none";
   });
 });
 
@@ -121,6 +113,28 @@ async function apiPost(type, payload){
   return true;
 }
 
+
+function buildDonationQrUrl(amount, currency){
+  const key = "doacao@projectafrica.org";
+  const data = `PIX|key:${key}|amount:${amount}|currency:${currency}`;
+  const encoded = encodeURIComponent(data);
+  return `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encoded}`;
+}
+
+
+function openPixModal(payload){
+  pendingDonation = payload;
+  if(pixQr) pixQr.src = buildDonationQrUrl(payload.amount, payload.currency);
+  if(pixAmountEl) pixAmountEl.textContent = formatMoney(payload.amount, payload.currency);
+  pixModal?.classList.add("show");
+  pixModal?.setAttribute("aria-hidden", "false");
+}
+function closePixModal(){
+  pendingDonation = null;
+  pixModal?.classList.remove("show");
+  pixModal?.setAttribute("aria-hidden", "true");
+}
+
 // ===== Donations =====
 const donationForm = $("#donationForm");
 const donationCountEl = $("#donationCount");
@@ -129,6 +143,11 @@ const avgDonationEl = $("#avgDonation");
 const amountEl = $("#amount");
 const currencyEl = $("#currency");
 const successBox = $("#successBox");
+const pixModal = $("#pixModal");
+const pixQr = $("#pixQr");
+const pixAmountEl = $("#pixAmount");
+const pixConfirm = $("#pixConfirm");
+let pendingDonation = null;
 
 async function donationStats(){
   const cur = currencyEl.value;
@@ -157,14 +176,28 @@ donationForm?.addEventListener("submit", async (e) => {
   if(!payload.name || !payload.amount || payload.amount < 1) return;
 
   try{
+    openPixModal(payload);
+  }catch(err){
+    alert("Falha ao registrar doação: " + err.message);
+  }
+});
+
+pixConfirm?.addEventListener("click", async () => {
+  if(!pendingDonation) return;
+  const payload = pendingDonation;
+  pixConfirm.setAttribute("disabled", "disabled");
+  try{
     await apiPost("donations", payload);
     successBox.style.display = "block";
     setTimeout(()=> successBox.style.display="none", 2200);
     donationForm.reset();
     currencyEl.value = payload.currency;
     await donationStats();
+    closePixModal();
   }catch(err){
     alert("Falha ao registrar doação: " + err.message);
+  }finally{
+    pixConfirm.removeAttribute("disabled");
   }
 });
 

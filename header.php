@@ -19,7 +19,9 @@ if (!isset($pageTitle)) $pageTitle = "Projecto África";
         <div>
           <h1>
             <span class="title-projecto">PROJECTO</span>
-            <span class="title-africa"><span class="title-africa-accent">Á</span><span class="title-africa-rest">FRICA</span></span>
+            <span class="title-africa">
+              <span class="title-africa-accent">Á</span><span class="title-africa-mid">F</span><span class="title-africa-rest">RICA</span>
+            </span>
           </h1>
           <small>Alimentação • Saúde • Educação</small>
         </div>

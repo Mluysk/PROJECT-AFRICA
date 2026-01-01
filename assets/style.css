@@ -75,7 +75,6 @@ button,input,select,textarea{font:inherit}
   box-shadow: 0 14px 40px rgba(0,0,0,.18);
 }
 .cta:hover{filter:brightness(1.05)}
-.burger{display:none}
 
 /* Hero */
 .hero{padding:54px 0 26px}
@@ -354,27 +353,5 @@ footer{padding:28px 0 40px; border-top:1px solid var(--line); color:var(--muted2
 }
 @media (max-width:720px){
   .nav{display:none}
-  .burger{
-    display:inline-grid;
-    place-items:center;
-    width:42px;height:42px;
-    border-radius:14px;
-    border:1px solid #e5e7eb;
-    background: #ffffff;
-    cursor:pointer;
-  }
-  .mobile-nav{
-    display:none;
-    padding:10px 18px 16px;
-    border-top:1px solid #e5e7eb;
-  }
-  .mobile-nav a{
-    display:block;
-    padding:10px 12px;
-    border-radius:14px;
-    border:1px solid #e5e7eb;
-    background: #f9fafb;
-    margin-top:8px;
-  }
   .hero-title{font-size:32px}
 }

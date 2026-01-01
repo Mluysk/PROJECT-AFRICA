@@ -15,6 +15,7 @@
         </div>
       </div>
     </div>
+    <div class="foot-note">© <?= date("Y") ?> Projecto África • Organização sem fins lucrativos.</div>
   </div>
 </footer>
 

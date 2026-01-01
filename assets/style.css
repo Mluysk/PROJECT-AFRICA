@@ -42,19 +42,11 @@ button,input,select,textarea{font:inherit}
 }
 .brand{display:flex; align-items:center; gap:12px; min-width:220px}
 .logo{
-  width:42px; height:42px; border-radius:14px;
-  background:
-    radial-gradient(18px 18px at 28% 30%, rgba(255,255,255,.65), transparent 60%),
-    linear-gradient(135deg, rgba(229,57,53,.95), rgba(247,181,0,.95), rgba(33,195,107,.95));
+  width:39px; height:39px;
+  border-radius:10px;
+  object-fit:cover;
+  display:block;
   box-shadow: 0 10px 26px rgba(0,0,0,.35);
-  position:relative; overflow:hidden;
-}
-.logo:after{
-  content:"";
-  position:absolute; inset:0;
-  background: radial-gradient(22px 18px at 58% 52%, rgba(255,255,255,.85), transparent 62%);
-  opacity:.75;
-  mix-blend-mode: screen;
 }
 .brand h1{
   font-size:14px; margin:0;

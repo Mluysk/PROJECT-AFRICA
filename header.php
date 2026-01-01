@@ -15,7 +15,7 @@ if (!isset($pageTitle)) $pageTitle = "Projecto África";
   <div class="container">
     <div class="topbar-inner">
       <a class="brand" href="#inicio" aria-label="Ir para início">
-        <div class="logo" aria-hidden="true"></div>
+        <img class="logo" src="/logo.png" alt="" aria-hidden="true" />
         <div>
           <h1>PROJECTO ÁFRICA</h1>
           <small>Alimentação • Saúde • Educação</small>

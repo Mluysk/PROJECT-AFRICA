@@ -392,8 +392,8 @@ function renderComments(arr){
     `;
   }).join("");
   if(commentPageInfo) commentPageInfo.textContent = `${commentPage + 1}/${commentTotalPages}`;
-  if(commentPrev) commentPrev.disabled = commentPage >= commentTotalPages - 1;
-  if(commentNext) commentNext.disabled = commentPage <= 0;
+  if(commentPrev) commentPrev.disabled = commentPage <= 0;
+  if(commentNext) commentNext.disabled = commentPage >= commentTotalPages - 1;
   if(commentNavLabel){
     commentNavLabel.textContent = commentPage === 0 ? "ver mensagens anterior" : "ver mensagens atuais";
   }

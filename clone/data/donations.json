@@ -1,0 +1,10 @@
+[
+    {
+        "name": "michael",
+        "currency": "BRL",
+        "amount": 100,
+        "purpose": "Alimentação",
+        "note": "Deus abençoe",
+        "at": "2026-01-01T02:26:17+00:00"
+    }
+]

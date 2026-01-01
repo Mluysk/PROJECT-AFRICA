@@ -14,13 +14,6 @@ function formatMoney(value, currency){
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 // Mobile
-const burger = $("#burger");
-const mobileNav = $("#mobileNav");
-burger?.addEventListener("click", () => {
-  const open = mobileNav.style.display === "block";
-  mobileNav.style.display = open ? "none" : "block";
-});
-
 // Smooth scroll
 $$('a[href^="#"]').forEach(a => {
   a.addEventListener("click", (e) => {
@@ -29,7 +22,6 @@ $$('a[href^="#"]').forEach(a => {
     if(!el) return;
     e.preventDefault();
     el.scrollIntoView({ behavior:"smooth", block:"start" });
-    if(mobileNav && mobileNav.style.display === "block") mobileNav.style.display = "none";
   });
 });
 
@@ -121,6 +113,98 @@ async function apiPost(type, payload){
   return true;
 }
 
+
+function formatPixField(id, value){
+  const len = String(value).length.toString().padStart(2, "0");
+  return `${id}${len}${value}`;
+}
+function crc16(payload){
+  let crc = 0xffff;
+  for (let i = 0; i < payload.length; i++) {
+    crc ^= payload.charCodeAt(i) << 8;
+    for (let j = 0; j < 8; j++) {
+      if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+      else crc <<= 1;
+      crc &= 0xffff;
+    }
+  }
+  return crc.toString(16).toUpperCase().padStart(4, "0");
+}
+function buildPixPayload(amount){
+  const rawKey = "5541997804023";
+  const merchantName = "PROJECTO AFRICA";
+  const merchantCity = "LUANDA";
+  const amountStr = Number(amount).toFixed(2);
+
+  const keyDigits = rawKey.replace(/\D/g, "");
+  const key = keyDigits.startsWith("55") ? `+${keyDigits}` : `+55${keyDigits}`;
+
+  const merchantAccount =
+    formatPixField("00", "BR.GOV.BCB.PIX") +
+    formatPixField("01", key);
+
+  const payload =
+    formatPixField("00", "01") +
+    formatPixField("26", merchantAccount) +
+    formatPixField("52", "0000") +
+    formatPixField("53", "986") +
+    formatPixField("54", amountStr) +
+    formatPixField("58", "BR") +
+    formatPixField("59", merchantName) +
+    formatPixField("60", merchantCity) +
+    formatPixField("62", formatPixField("05", "PROJECTOAFRICA"));
+
+  const withCrc = payload + "6304";
+  const crc = crc16(withCrc);
+  return withCrc + crc;
+}
+function buildDonationQrUrl(amount){
+  const data = buildPixPayload(amount);
+  const encoded = encodeURIComponent(data);
+  return `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encoded}`;
+}
+
+
+function openPixPanel(payload){
+  pendingDonation = payload;
+  if(pixQr) pixQr.src = buildDonationQrUrl(payload.amount);
+  if(pixAmountEl) pixAmountEl.textContent = formatMoney(payload.amount, payload.currency);
+  pixPanel?.classList.add("show");
+  pixPanel?.setAttribute("aria-hidden", "false");
+  pixThanks?.classList.remove("show");
+}
+function closePixPanel(){
+  pendingDonation = null;
+  if(pixTimer) clearTimeout(pixTimer);
+  if(autoConfirmTimer) clearTimeout(autoConfirmTimer);
+  pixPanel?.classList.remove("show");
+  pixPanel?.setAttribute("aria-hidden", "true");
+}
+
+async function confirmPixPayment(){
+  if(!pendingDonation || isConfirmingPix) return;
+  isConfirmingPix = true;
+  const payload = pendingDonation;
+  if(pixConfirm) pixConfirm.setAttribute("disabled", "disabled");
+  try{
+    await apiPost("donations", payload);
+    successBox.style.display = "block";
+    setTimeout(()=> successBox.style.display="none", 2200);
+    donationForm.reset();
+    currencyEl.value = payload.currency;
+    await donationStats();
+    pixThanks?.classList.add("show");
+    setTimeout(() => {
+      closePixPanel();
+    }, 1500);
+  }catch(err){
+    alert("Falha ao registrar doação: " + err.message);
+  }finally{
+    isConfirmingPix = false;
+    pixConfirm?.removeAttribute("disabled");
+  }
+}
+
 // ===== Donations =====
 const donationForm = $("#donationForm");
 const donationCountEl = $("#donationCount");
@@ -129,6 +213,16 @@ const avgDonationEl = $("#avgDonation");
 const amountEl = $("#amount");
 const currencyEl = $("#currency");
 const successBox = $("#successBox");
+const pixPanel = $("#pixPanel");
+const pixQr = $("#pixQr");
+const pixAmountEl = $("#pixAmount");
+const pixConfirm = $("#pixConfirm");
+const pixThanks = $("#pixThanks");
+const pixWait = $("#pixWait");
+let pendingDonation = null;
+let pixTimer = null;
+let autoConfirmTimer = null;
+let isConfirmingPix = false;
 
 async function donationStats(){
   const cur = currencyEl.value;
@@ -157,15 +251,14 @@ donationForm?.addEventListener("submit", async (e) => {
   if(!payload.name || !payload.amount || payload.amount < 1) return;
 
   try{
-    await apiPost("donations", payload);
-    successBox.style.display = "block";
-    setTimeout(()=> successBox.style.display="none", 2200);
-    donationForm.reset();
-    currencyEl.value = payload.currency;
-    await donationStats();
+    openPixPanel(payload);
   }catch(err){
     alert("Falha ao registrar doação: " + err.message);
   }
+});
+
+pixConfirm?.addEventListener("click", () => {
+  confirmPixPayment();
 });
 
 // ===== Comments =====

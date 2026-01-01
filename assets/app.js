@@ -131,10 +131,13 @@ function crc16(payload){
   return crc.toString(16).toUpperCase().padStart(4, "0");
 }
 function buildPixPayload(amount){
-  const key = "5541997804023";
+  const rawKey = "5541997804023";
   const merchantName = "PROJECTO AFRICA";
   const merchantCity = "LUANDA";
   const amountStr = Number(amount).toFixed(2);
+
+  const keyDigits = rawKey.replace(/\D/g, "");
+  const key = keyDigits.startsWith("55") ? `+${keyDigits}` : `+55${keyDigits}`;
 
   const merchantAccount =
     formatPixField("00", "BR.GOV.BCB.PIX") +

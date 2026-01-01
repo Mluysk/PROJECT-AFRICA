@@ -15,7 +15,10 @@
         </div>
       </div>
     </div>
-    <div class="foot-note">© <?= date("Y") ?> Projecto África • Organização sem fins lucrativos.</div>
+    <div class="foot-note">
+      © <?= date("Y") ?> Projecto África • Organização sem fins lucrativos.
+      <span class="foot-note-line">Desenvolvido por <a href="https://www.mystic-designer.com.br" target="_blank" rel="noopener noreferrer">Mystic Designer®</a></span>
+    </div>
   </div>
 </footer>
 

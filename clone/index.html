@@ -1,7 +1,49 @@
-<?php
-$pageTitle = "Projecto África — Ajuda Humanitária";
-require __DIR__ . "/header.php";
-?>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projecto África — Ajuda Humanitária</title>
+  <meta name="description" content="Projecto África — organização sem fins lucrativos." />
+  <link rel="stylesheet" href="assets/style.css?v=2">
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <a class="brand" href="#inicio" aria-label="Ir para início">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>PROJECTO ÁFRICA</h1>
+          <small>Alimentação • Saúde • Educação</small>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegação">
+        <a href="#impacto">Impacto</a>
+        <a href="#atuacao">Onde atuamos</a>
+        <a href="#historias">Histórias</a>
+        <a href="#doar">Doar</a>
+        <a href="#comentarios">Comentários</a>
+        <a class="cta" href="#doar">Fazer doação</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Abrir menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#impacto">Impacto</a>
+      <a href="#atuacao">Onde atuamos</a>
+      <a href="#historias">Histórias</a>
+      <a href="#doar">Doar</a>
+      <a href="#comentarios">Comentários</a>
+    </div>
+  </div>
+</header>
 
 <main id="inicio" class="hero">
   <div class="container">
@@ -23,6 +65,9 @@ require __DIR__ . "/header.php";
             <a class="btn" href="#historias">Ver histórias</a>
           </div>
           <div class="mini">
+            <span>✓ Contadores ao vivo</span>
+            <span>✓ Doações salvas no servidor</span>
+            <span>✓ Comentários salvos no servidor</span>
           </div>
         </div>
       </div>
@@ -176,6 +221,14 @@ require __DIR__ . "/header.php";
         <div class="pc">
           <div class="success" id="successBox">Doação registrada. Obrigado!</div>
 
+          <div class="quick">
+            <button class="q" data-amount="10">10</button>
+            <button class="q" data-amount="25">25</button>
+            <button class="q" data-amount="50">50</button>
+            <button class="q" data-amount="100">100</button>
+            <button class="q" data-amount="200">200</button>
+          </div>
+
           <form class="form" id="donationForm">
             <div class="row">
               <div>
@@ -194,20 +247,8 @@ require __DIR__ . "/header.php";
 
             <div class="row">
               <div>
-                <label for="amount">Valor <small class="amount-hint">(valor minimo R$1,00 • doe qualquer valor)</small></label>
-                <div class="amount-field">
-                  <span class="amount-prefix" id="amountPrefix">R$</span>
-                  <input id="amount" type="text" inputmode="decimal" value="1,00" required />
-                </div>
-                <div class="helper">(valores sugeridos • ou digite um valor manualmente acima)</div>
-                <div class="quick">
-                  <button class="q" data-amount="1">1</button>
-                  <button class="q" data-amount="5">5</button>
-                  <button class="q" data-amount="10">10</button>
-                  <button class="q" data-amount="25">25</button>
-                  <button class="q" data-amount="50">50</button>
-                  <button class="q" data-amount="100">100</button>
-                </div>
+                <label for="amount">Valor</label>
+                <input id="amount" type="number" min="1" step="1" required />
               </div>
               <div>
                 <label for="purpose">Destino</label>
@@ -227,17 +268,6 @@ require __DIR__ . "/header.php";
 
             <button class="btn primary" type="submit">Confirmar</button>
           </form>
-
-
-          <div class="pix-panel" id="pixPanel" aria-hidden="true">
-            <h4>Pagamento via PIX</h4>
-            <img id="pixQr" alt="QR Code PIX" />
-            <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
-
-            <p class="pix-wait" id="pixWait">Espere 30 segundos para confirmar o pagamento PIX ou aguarde a confirmação automática.</p>
-            <p class="pix-thanks" id="pixThanks">Obrigado por ajudar a África.</p>
-            <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
-          </div>
         </div>
       </div>
     </div>
@@ -277,39 +307,11 @@ require __DIR__ . "/header.php";
 
             <button class="btn primary" type="submit">Publicar</button>
           </form>
-
-
-          <div class="pix-panel" id="pixPanel" aria-hidden="true">
-            <h4>Pagamento via PIX</h4>
-            <img id="pixQr" alt="QR Code PIX" />
-            <p class="pix-amount">Valor: <span id="pixAmount"></span></p>
-
-            <p class="pix-wait" id="pixWait">Espere 30 segundos para confirmar o pagamento PIX ou aguarde a confirmação automática.</p>
-            <p class="pix-thanks" id="pixThanks">Obrigado por ajudar a África.</p>
-            <button class="btn primary" type="button" id="pixConfirm">Confirmar pagamento</button>
-          </div>
         </div>
       </div>
 
       <div class="panel">
-        <div class="ph">
-          <h3>Mensagens</h3>
-          <div class="comment-nav" aria-label="Navegação de mensagens">
-            <button type="button" id="commentPrev" class="comment-nav-btn" aria-label="Mensagens anteriores">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15 6l-6 6 6 6"/>
-              </svg>
-            </button>
-            <span id="commentPageInfo" class="comment-page" aria-hidden="true"></span>
-            <button type="button" id="commentNext" class="comment-nav-btn" aria-label="Mensagens mais recentes">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M9 6l6 6-6 6"/>
-              </svg>
-            </button>
-          </div>
-          <span id="commentNavLabel" class="comment-nav-label">ver mensagens anterior</span>
-          <span class="pill"><span class="dot"></span> Atualiza</span>
-        </div>
+        <div class="ph"><h3>Mensagens</h3><span class="pill"><span class="dot"></span> Atualiza</span></div>
         <div class="pc">
           <div id="commentList" style="display:grid; gap:10px;"></div>
         </div>
@@ -317,5 +319,26 @@ require __DIR__ . "/header.php";
     </div>
   </div>
 </section>
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div class="col">
+        <b>Projecto África</b>
+        <div style="margin-top:10px; line-height:1.6">
+          Transparência, ação local e respeito.<br/>
+          Contato: <span style="color:rgba(255,255,255,.82)">contato@projectoafrica.org</span>
+        </div>
+      </div>
+      <div class="col">
+        <b>Nota</b>
+        <div style="margin-top:10px; line-height:1.6">
+          Doações e comentários ficam salvos no servidor em arquivos JSON (sem MySQL).
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-<?php require __DIR__ . "/footer.php"; ?>
+<script src="assets/app.js?v=2"></script>
+</body>
+</html>

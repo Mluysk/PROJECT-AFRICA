@@ -15,7 +15,7 @@ if (!isset($pageTitle)) $pageTitle = "Projecto África";
   <div class="container">
     <div class="topbar-inner">
       <a class="brand" href="#inicio" aria-label="Ir para início">
-        <div class="logo" aria-hidden="true"></div>
+        <img class="logo" src="/logo.png" alt="" aria-hidden="true" />
         <div>
           <h1>PROJECTO ÁFRICA</h1>
           <small>Alimentação • Saúde • Educação</small>
@@ -31,19 +31,6 @@ if (!isset($pageTitle)) $pageTitle = "Projecto África";
         <a class="cta" href="#doar">Fazer doação</a>
       </nav>
 
-      <button class="burger" id="burger" aria-label="Abrir menu">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(255,255,255,.9)" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="mobile-nav" id="mobileNav">
-      <a href="#impacto">Impacto</a>
-      <a href="#atuacao">Onde atuamos</a>
-      <a href="#historias">Histórias</a>
-      <a href="#doar">Doar</a>
-      <a href="#comentarios">Comentários</a>
     </div>
   </div>
 </header>

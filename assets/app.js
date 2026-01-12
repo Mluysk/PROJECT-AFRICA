@@ -14,13 +14,6 @@ function formatMoney(value, currency){
 function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
 // Mobile
-const burger = $("#burger");
-const mobileNav = $("#mobileNav");
-burger?.addEventListener("click", () => {
-  const open = mobileNav.style.display === "block";
-  mobileNav.style.display = open ? "none" : "block";
-});
-
 // Smooth scroll
 $$('a[href^="#"]').forEach(a => {
   a.addEventListener("click", (e) => {
@@ -29,7 +22,6 @@ $$('a[href^="#"]').forEach(a => {
     if(!el) return;
     e.preventDefault();
     el.scrollIntoView({ behavior:"smooth", block:"start" });
-    if(mobileNav && mobileNav.style.display === "block") mobileNav.style.display = "none";
   });
 });
 
@@ -121,6 +113,14 @@ async function apiPost(type, payload){
   return true;
 }
 
+
+function buildDonationQrUrl(amount, currency){
+  const key = "doacao@projectafrica.org";
+  const data = `PIX|key:${key}|amount:${amount}|currency:${currency}`;
+  const encoded = encodeURIComponent(data);
+  return `https://api.qrserver.com/v1/create-qr-code/?size=320x320&data=${encoded}`;
+}
+
 // ===== Donations =====
 const donationForm = $("#donationForm");
 const donationCountEl = $("#donationCount");
@@ -163,6 +163,7 @@ donationForm?.addEventListener("submit", async (e) => {
     donationForm.reset();
     currencyEl.value = payload.currency;
     await donationStats();
+    window.location.href = buildDonationQrUrl(payload.amount, payload.currency);
   }catch(err){
     alert("Falha ao registrar doação: " + err.message);
   }

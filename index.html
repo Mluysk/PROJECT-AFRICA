@@ -1,7 +1,36 @@
-<?php
-$pageTitle = "Projecto África — Ajuda Humanitária";
-require __DIR__ . "/header.php";
-?>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projecto África — Ajuda Humanitária</title>
+  <meta name="description" content="Projecto África — organização sem fins lucrativos." />
+  <link rel="stylesheet" href="assets/style.css?v=2">
+</head>
+<body>
+<header class="topbar">
+  <div class="container">
+    <div class="topbar-inner">
+      <a class="brand" href="#inicio" aria-label="Ir para início">
+        <img class="logo" src="/logo.png" alt="" aria-hidden="true" />
+        <div>
+          <h1>PROJECTO ÁFRICA</h1>
+          <small>Alimentação • Saúde • Educação</small>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegação">
+        <a href="#impacto">Impacto</a>
+        <a href="#atuacao">Onde atuamos</a>
+        <a href="#historias">Histórias</a>
+        <a href="#doar">Doar</a>
+        <a href="#comentarios">Comentários</a>
+        <a class="cta" href="#doar">Fazer doação</a>
+      </nav>
+
+    </div>
+  </div>
+</header>
 
 <main id="inicio" class="hero">
   <div class="container">
@@ -300,5 +329,26 @@ require __DIR__ . "/header.php";
     </div>
   </div>
 </section>
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div class="col">
+        <b>Projecto África</b>
+        <div style="margin-top:10px; line-height:1.6">
+          Transparência, ação local e respeito.<br/>
+          Contato: <span style="color:rgba(255,255,255,.82)">contato@projectoafrica.org</span>
+        </div>
+      </div>
+      <div class="col">
+        <b>Nota</b>
+        <div style="margin-top:10px; line-height:1.6">
+          Doações e comentários ficam salvos no servidor em arquivos JSON (sem MySQL).
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
-<?php require __DIR__ . "/footer.php"; ?>
+<script src="assets/app.js?v=2"></script>
+</body>
+</html>
